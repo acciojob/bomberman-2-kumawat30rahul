@@ -12,8 +12,8 @@ for(let i = 0;i<100;i++){
 
 
 //=========adding bombs=============//
-let noOfMines = 10;
-for(let i = 0; i<noOfMines ;i++){
+// let noOfMines = 10;
+for(let i = 0; i<10 ;i++){
     let randomId = Math.round(Math.random()*99);
     let bombDiv = document.getElementById(randomId);
     bombDiv.classList.remove('valid')
