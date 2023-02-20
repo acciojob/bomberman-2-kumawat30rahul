@@ -30,43 +30,85 @@ boardDivs.forEach(boardCell => {
     boardCell.addEventListener("contextmenu",addingFlag)
 })
 
+
+let clickedNonBombDivs = [];
+
 function revealingDivs(e){
     let id = e.target.id
     let clickedCell = document.getElementById(id)
-    clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
-    clickedCell.style.opacity = '0.6'
-    clickedCell.classList.add('checked')
-    //====displaying the number of bobms==//
-    if(!clickedCell.classList.contains('bomb')){
-        let bombCount = 0;
 
-        let bombArr = {
-            left : -1,
-            right : "+" + 1,
-            up : -10,
-            down : "+" + 10,
-            upLeft : -9,
-            upRight : -11,
-            downLeft : "+" + 9,
-            downRight : "+" + 11
-        };
-        
-    
-        if(id > 10 && (id/10) !== 0 && id <89 && ((id-9)/10) !== 0){
-            for(let bomb in bombArr){
-                let bombsNumber = eval(id + String(bombArr[bomb])) 
-                let bombsNumberDiv = document.getElementById(bombsNumber)
-                if(bombsNumberDiv.classList.contains('bomb')){
-                    bombCount++;  
+    if(clickedCell.classList.contains('bomb')){
+        let clickedBomb = document.querySelectorAll(".bomb")
+        let shouldTriggerClick = true;
+        clickedBomb.forEach(bomb => {
+            bomb.addEventListener("click",() => {
+                if(shouldTriggerClick){
+                    clickedBomb.forEach(bomb => {
+                        bomb.innerText = "💣" 
+                        bomb.click()
+                    })
                 }
+                shouldTriggerClick = false;
+            gameOver()
+    
+            })
+    
+        })
+    }else{
+        clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
+        clickedCell.style.opacity = '0.6'
+        clickedCell.classList.add('checked')
+        clickedNonBombDivs.push(id)
+        //====displaying the number of bobms==//
+        if(!clickedCell.classList.contains('bomb')){
+            let bombCount = 0;
+
+            let bombArr = {
+                left : -1,
+                right : "+" + 1,
+                up : -10,
+                down : "+" + 10,
+                upLeft : -9,
+                upRight : -11,
+                downLeft : "+" + 9,
+                downRight : "+" + 11
+            };
+            
+        
+            if(id > 10 && (id/10) !== 0 && id <89 && ((id-9)/10) !== 0){
+                for(let bomb in bombArr){
+                    let bombsNumber = eval(id + String(bombArr[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                    }
+                }
+                clickedCell.innerText = bombCount
+                clickedCell.dataset.attri = bombCount
             }
-            clickedCell.innerText = bombCount
-            clickedCell.dataset.attri = bombCount
+
+            if (clickedNonBombDivs.length === 90) {
+                won();
+              }
         }
     }
     
+
+
+    
+    
 }
 
+let allClicked = document.querySelectorAll('.checked')
+let count = 0
+allClicked.forEach(div => {
+    if(!div.classList.contains('bomb')){
+        count++;
+    }
+})
+if(count === 89){
+    won()
+}
 
 let flagCount = 0;
 let result = document.getElementById('result')
@@ -102,22 +144,7 @@ function addingFlag(e){
 }
 
 
-    let clickedBomb = document.querySelectorAll(".bomb")
-    let shouldTriggerClick = true;
-    clickedBomb.forEach(bomb => {
-        bomb.addEventListener("click",() => {
-            if(shouldTriggerClick){
-                clickedBomb.forEach(bomb => {
-                    bomb.innerText = "💣" 
-                    bomb.click()
-                })
-            }
-            shouldTriggerClick = false;
-        gameOver()
-
-        })
-
-    })
+    
 
 function gameOver(){
     result.innerHTML = "YOU LOSE!"
