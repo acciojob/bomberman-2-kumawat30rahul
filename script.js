@@ -68,7 +68,7 @@ function revealingDivs(e){
         //====displaying the number of bobms==//
         if(!clickedCell.classList.contains('bomb')){
             let bombCount = 0;
-
+            console.log("first after declaration",bombCount);
             let bombArr = {
                 left : -1,
                 right : "+" + 1,
@@ -79,21 +79,92 @@ function revealingDivs(e){
                 downLeft : "+" + 9,
                 downRight : "+" + 11
             };
+            let bombArrUP = {
+                left : -1,
+                right : "+" + 1,
+                down : "+" + 10,
+                downLeft : "+" + 9,
+                downRight : "+" + 11
+            };
+            let bombArrRIGHT = {
+                left : -1,
+                up : -10,
+                down : "+" + 10,
+                upLeft : -9,
+                downLeft : "+" + 9,
+            };
+            let bombArrDOWN = {
+                left : -1,
+                right : "+" + 1,
+                up : -10,
+                upLeft : -9,
+                upRight : -11,
+            };
+            let bombArrLEFT = {
+                right : "+" + 1,
+                up : -10,
+                down : "+" + 10,
+                upRight : -11,
+                downRight : "+" + 11
+            };
             
         
-            if(id > 10 && (id/10) !== 0 && id <89 && ((id-9)/10) !== 0){
+            if(id >= 10 && (id%10) !== 0 && id <89 && ((id-9)%10) !== 0 ){
                 for(let bomb in bombArr){
                     let bombsNumber = eval(id + String(bombArr[bomb])) 
                     let bombsNumberDiv = document.getElementById(bombsNumber)
                     if(bombsNumberDiv.classList.contains('bomb')){
                         bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
                     }
                 }
                 clickedCell.innerText = bombCount
-                
-
+                console.log("outsude for loop>>>",bombCount);
+            }else if(id < 10){
+                for(let bomb in bombArrUP){
+                    let bombsNumber = eval(id + String(bombArrUP[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
+            }else if(id%10 === 0){
+                for(let bomb in bombArrLEFT){
+                    let bombsNumber = eval(id + String(bombArrLEFT[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
+            }else if((id-9)%10 === 0){
+                for(let bomb in bombArrRIGHT){
+                    let bombsNumber = eval(id + String(bombArrRIGHT[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
+            }else if(id>89 && id <99){
+                for(let bomb in bombArrDOWN){
+                    let bombsNumber = eval(id + String(bombArrDOWN[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
             }
+            console.log("first dec>>",bombCount);
             clickedCell.setAttribute('data-value',bombCount)
+            console.log("second dec>>",bombCount);
+
 
             // if (clickedNonBombDivs.length === 90) {
             //     won();
@@ -115,12 +186,10 @@ function revealingDivs(e){
                 
         }
     }
-    
-
-
-    
-    
+ 
 }
+
+
 let clickedBomb = document.querySelectorAll(".bomb")
 let shouldTriggerClick = true;
 let countdgdfg = 0
