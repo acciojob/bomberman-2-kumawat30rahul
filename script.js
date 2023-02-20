@@ -4,7 +4,6 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-value',"NaN")
     boardCell.classList.add('grid-item','valid')
     boardCell.innerText = i
     board.appendChild(boardCell)
@@ -13,13 +12,35 @@ for(let i = 0;i<100;i++){
 
 //=========adding bombs=============//
 // let noOfMines = 10;
-for(let i = 0; i<10 ;i++){
-    let randomId = Math.round(Math.random()*99);
-    let bombDiv = document.getElementById(randomId);
-    bombDiv.classList.remove('valid')
-    bombDiv.classList.add('bomb')
-    bombDiv.style.backgroundColor = 'red'
+// let bombIds = new Set();
+
+// while (bombIds.size < 10) {
+//   let randomId = Math.round(Math.random() * 79);
+//   bombIds.add(randomId + 10);
+// }
+
+// bombIds.forEach(id => {
+//   let bombDiv = document.getElementById(id);
+//   bombDiv.classList.remove('valid');
+//   bombDiv.classList.add('bomb');
+//   bombDiv.style.backgroundColor = 'red';
+// });
+
+let bombIds = [];
+while (bombIds.length < 10) {
+  let randomId = Math.floor(Math.random() * 80) + 10;
+  if (!bombIds.includes(randomId)) {
+    bombIds.push(randomId);
+  }
 }
+
+for (let i = 0; i < bombIds.length; i++) {
+  let bombDiv = document.getElementById(bombIds[i]);
+  bombDiv.classList.remove('valid');
+  bombDiv.classList.add('bomb');
+  bombDiv.style.backgroundColor = 'red';
+}
+
 //============revelaing boxes===============//
 
 let boardDivs = document.querySelectorAll('.grid-item')
@@ -69,8 +90,10 @@ function revealingDivs(e){
                     }
                 }
                 clickedCell.innerText = bombCount
-                clickedCell.dataset.value = bombCount
+                
+
             }
+            clickedCell.setAttribute('data-value',bombCount)
 
             // if (clickedNonBombDivs.length === 90) {
             //     won();
