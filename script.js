@@ -85,14 +85,19 @@ function revealingDivs(e){
 }
 let clickedBomb = document.querySelectorAll(".bomb")
 let shouldTriggerClick = true;
+let countdgdfg = 0
 clickedBomb.forEach(bomb => {
     bomb.addEventListener("click",() => {
         bomb.classList.add('checked')
         if(shouldTriggerClick){
-            clickedBomb.forEach(bomb => {
-                bomb.innerText = "💣" 
-                bomb.classList.add('checked')
-                bomb.click()
+            clickedBomb.forEach(otherbomb => {
+                if(otherbomb !== bomb){
+                    bomb.innerText = "💣" 
+                    bomb.classList.add('checked')
+                    console.log(countdgdfg++);
+                     bomb.click()
+                }
+                
             })
         }
         shouldTriggerClick = false;
@@ -113,7 +118,7 @@ if(count === 90){
     won()
 }
 
-let flagCount = 0;
+let flagCount = 10;
 let result = document.getElementById('result')
 
 function addingFlag(e){
@@ -122,17 +127,16 @@ function addingFlag(e){
 
     let id = e.target.id
     let clickedCell = document.getElementById(id)
-    if(!clickedCell.classList.contains('flag')){
-        if(flagCount < 10){
-            flagCount++;
+    if(!clickedCell.classList.contains('flag')){     
+            flagCount--;
             clickedCell.innerText = '🚩' 
             clickedCell.classList.add('flag')
-            flagsLeft.innerText = flagCount
-            
-        }
+            flagsLeft.innerText = flagCount     
         
     }else{
-        flagCount--;
+        if(flagCount < 10){
+            flagCount++;
+        }
         clickedCell.innerText = '' 
         clickedCell.classList.remove('flag')
         flagsLeft.innerText = flagCount
