@@ -12,7 +12,7 @@ for(let i = 0;i<100;i++){
 
 
 //=========adding bombs=============//
-let noOfMines = 8;
+let noOfMines = 10;
 for(let i = 0; i<noOfMines ;i++){
     let randomId = Math.round(Math.random()*99);
     let bombDiv = document.getElementById(randomId);
@@ -35,7 +35,7 @@ function revealingDivs(e){
     let clickedCell = document.getElementById(id)
     clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
     clickedCell.style.opacity = '0.6'
-
+    clickedCell.classList.add('checked')
     //====displaying the number of bobms==//
     if(!clickedCell.classList.contains('bomb')){
         let bombCount = 0;
@@ -69,7 +69,9 @@ function revealingDivs(e){
 }
 
 
-let flagCount = noOfMines;
+let flagCount = 0;
+let result = document.getElementById('result')
+
 function addingFlag(e){
     e.preventDefault()
     let flagsLeft = document.getElementById('flagsLeft')
@@ -77,26 +79,37 @@ function addingFlag(e){
     let id = e.target.id
     let clickedCell = document.getElementById(id)
     if(!clickedCell.classList.contains('flag')){
-        flagCount--;
-        clickedCell.innerText = '🚩' 
-        clickedCell.classList.add('flag')
-        flagsLeft.innerText = flagCount
+        if(flagCount < 10){
+            flagCount++;
+            clickedCell.innerText = '🚩' 
+            clickedCell.classList.add('flag')
+            flagsLeft.innerText = flagCount
+            
+        }
+        
     }else{
-        flagCount++;
+        flagCount--;
         clickedCell.innerText = '' 
         clickedCell.classList.remove('flag')
         flagsLeft.innerText = flagCount
     }
     
+    if(flagCount === 10){
+        if(clickedCell.classList.contains('bomb')){
+            result.innerText = "YOU WIN!"
+        }
+    }
 }
 
 
     let clickedBomb = document.querySelectorAll(".bomb")
+    
     console.log(clickedBomb);
     clickedBomb.forEach(bomb => {
         bomb.addEventListener("click",() => {
             clickedBomb.forEach(bomb => {
                 bomb.innerText = "💣" 
+                result.innerText = "YOU LOSE!"
             })
         })
     })
