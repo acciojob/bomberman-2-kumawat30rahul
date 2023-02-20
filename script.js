@@ -4,7 +4,7 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-attri',"")
+    boardCell.setAttribute('data-attri',"0")
     boardCell.classList.add('grid-item','valid')
     // boardCell.innerText = i
     board.appendChild(boardCell)
@@ -87,9 +87,11 @@ let clickedBomb = document.querySelectorAll(".bomb")
 let shouldTriggerClick = true;
 clickedBomb.forEach(bomb => {
     bomb.addEventListener("click",() => {
+        bomb.classList.add('checked')
         if(shouldTriggerClick){
             clickedBomb.forEach(bomb => {
                 bomb.innerText = "💣" 
+                bomb.classList.add('checked')
                 bomb.click()
             })
         }
