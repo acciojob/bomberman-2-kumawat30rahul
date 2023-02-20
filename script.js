@@ -4,7 +4,7 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-value',"Nan")
+    boardCell.setAttribute('data-value',"NaN")
     boardCell.classList.add('grid-item','valid')
     boardCell.innerText = i
     board.appendChild(boardCell)
@@ -31,7 +31,7 @@ boardDivs.forEach(boardCell => {
 })
 
 
-let clickedNonBombDivs = [];
+// let clickedNonBombDivs = [];
 
 function revealingDivs(e){
     let id = e.target.id
@@ -43,7 +43,7 @@ function revealingDivs(e){
         clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
         clickedCell.style.opacity = '0.6'
         clickedCell.classList.add('checked')
-        clickedNonBombDivs.push(id)
+        // clickedNonBombDivs.push(id)
         //====displaying the number of bobms==//
         if(!clickedCell.classList.contains('bomb')){
             let bombCount = 0;
@@ -75,6 +75,21 @@ function revealingDivs(e){
             // if (clickedNonBombDivs.length === 90) {
             //     won();
             //   }
+
+              let allClicked = document.querySelectorAll('.checked')
+                // console.log(allClicked);
+                let count = 0
+                if(allClicked.length === 90){
+                    allClicked.forEach(div => {
+                        if(!div.classList.contains('bomb')){
+                            count++;
+                        }
+                    })
+                    if(count === 90){
+                        won()
+                    }
+                }
+                
         }
     }
     
@@ -104,16 +119,7 @@ clickedBomb.forEach(bomb => {
 
 })
 
-let allClicked = document.querySelectorAll('.checked')
-let count = 0
-allClicked.forEach(div => {
-    if(!div.classList.contains('bomb')){
-        count++;
-    }
-})
-if(count === 89){
-    won()
-}
+
 
 let flagCount = 10;
 let result = document.getElementById('result')
