@@ -124,22 +124,22 @@ function addingFlag(e){
 
     let id = e.target.id
     let clickedCell = document.getElementById(id)
-    if(!clickedCell.classList.contains('flag')){     
+    if(!clickedCell.classList.contains('flag')){  
+        if(flagCount > 0){
             flagCount--;
             clickedCell.innerText = '🚩' 
             clickedCell.classList.add('flag')
             flagsLeft.innerText = flagCount     
-        
+        }     
     }else{
-        if(flagCount < 10){
-            flagCount++;
-        }
-        clickedCell.innerText = '' 
-        clickedCell.classList.remove('flag')
+         flagCount++;
+         clickedCell.innerText = '' 
+         clickedCell.classList.remove('flag')
         flagsLeft.innerText = flagCount
+        
     }
     
-    if(flagCount === 10){
+    if(flagCount === 0){
         console.log("won");
         if(clickedCell.classList.contains('bomb')){
             won()
