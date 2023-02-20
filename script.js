@@ -4,7 +4,7 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-value',"0")
+    boardCell.setAttribute('data-value',"Nan")
     boardCell.classList.add('grid-item','valid')
     boardCell.innerText = i
     board.appendChild(boardCell)
