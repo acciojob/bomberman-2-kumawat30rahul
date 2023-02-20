@@ -90,14 +90,11 @@ clickedBomb.forEach(bomb => {
     bomb.addEventListener("click",() => {
         bomb.classList.add('checked')
         if(shouldTriggerClick){
-            clickedBomb.forEach(otherbomb => {
-                if(otherbomb !== bomb){
-                    bomb.innerText = "💣" 
-                    bomb.classList.add('checked')
-                    console.log(countdgdfg++);
-                     bomb.click()
-                }
-                
+            clickedBomb.forEach(bomb => {
+                bomb.innerText = "💣" 
+                bomb.classList.add('checked')
+                console.log(countdgdfg++);
+                bomb.click()
             })
         }
         shouldTriggerClick = false;
