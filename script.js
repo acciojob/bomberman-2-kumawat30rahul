@@ -118,8 +118,34 @@ function revealingDivs(e){
                 upLeft : -9,
                 left : -1,
             }
-        
-            if(id >= 10 && (id%10) !== 0 && id <89 && ((id-9)%10) !== 0 ){
+            console.log( id, typeof id);
+            
+             if(id == 90){
+                console.log("id is", id);
+                for(let bomb in corner1){
+                    let bombsNumber = eval(id + String(corner1[bomb])) 
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
+            }else if(id == 99){
+                console.log("id is", id);
+
+                for(let bomb in corner2){
+                    let bombsNumber = eval(id + String(corner2[bomb])) 
+                    console.log("sdgsdfg",bombsNumber);
+                    let bombsNumberDiv = document.getElementById(bombsNumber)
+                    if(bombsNumberDiv.classList.contains('bomb')){
+                        bombCount++;  
+                        console.log("inside for loop>>>",bombCount);
+                    }
+                }
+                clickedCell.innerText = bombCount
+            }
+            else if(id >= 10 && (id%10) !== 0 && id <89 && ((id-9)%10) !== 0 ){
                 for(let bomb in bombArr){
                     let bombsNumber = eval(id + String(bombArr[bomb])) 
                     let bombsNumberDiv = document.getElementById(bombsNumber)
@@ -163,27 +189,6 @@ function revealingDivs(e){
             }else if(id>91 && id <99 && id!==90 && id!==99){
                 for(let bomb in bombArrDOWN){
                     let bombsNumber = eval(id + String(bombArrDOWN[bomb])) 
-                    let bombsNumberDiv = document.getElementById(bombsNumber)
-                    if(bombsNumberDiv.classList.contains('bomb')){
-                        bombCount++;  
-                        console.log("inside for loop>>>",bombCount);
-                    }
-                }
-                clickedCell.innerText = bombCount
-            }else if(id === 90){
-                for(let bomb in corner1){
-                    let bombsNumber = eval(id + String(corner1[bomb])) 
-                    let bombsNumberDiv = document.getElementById(bombsNumber)
-                    if(bombsNumberDiv.classList.contains('bomb')){
-                        bombCount++;  
-                        console.log("inside for loop>>>",bombCount);
-                    }
-                }
-                clickedCell.innerText = bombCount
-            }else if(id === 99){
-                for(let bomb in corner2){
-                    let bombsNumber = eval(id + String(corner2[bomb])) 
-                    console.log("sdgsdfg",bombsNumber);
                     let bombsNumberDiv = document.getElementById(bombsNumber)
                     if(bombsNumberDiv.classList.contains('bomb')){
                         bombCount++;  
