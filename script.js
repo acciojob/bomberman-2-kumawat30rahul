@@ -4,9 +4,9 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-attri',"0")
+    boardCell.setAttribute('data-value',"0")
     boardCell.classList.add('grid-item','valid')
-    // boardCell.innerText = i
+    boardCell.innerText = i
     board.appendChild(boardCell)
 }
 
@@ -69,12 +69,12 @@ function revealingDivs(e){
                     }
                 }
                 clickedCell.innerText = bombCount
-                clickedCell.dataset.attri = bombCount
+                clickedCell.dataset.value = bombCount
             }
 
-            if (clickedNonBombDivs.length === 90) {
-                won();
-              }
+            // if (clickedNonBombDivs.length === 90) {
+            //     won();
+            //   }
         }
     }
     
@@ -111,7 +111,7 @@ allClicked.forEach(div => {
         count++;
     }
 })
-if(count === 90){
+if(count === 89){
     won()
 }
 
