@@ -38,22 +38,7 @@ function revealingDivs(e){
     let clickedCell = document.getElementById(id)
 
     if(clickedCell.classList.contains('bomb')){
-        let clickedBomb = document.querySelectorAll(".bomb")
-        let shouldTriggerClick = true;
-        clickedBomb.forEach(bomb => {
-            bomb.addEventListener("click",() => {
-                if(shouldTriggerClick){
-                    clickedBomb.forEach(bomb => {
-                        bomb.innerText = "💣" 
-                        bomb.click()
-                    })
-                }
-                shouldTriggerClick = false;
             gameOver()
-    
-            })
-    
-        })
     }else{
         clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
         clickedCell.style.opacity = '0.6'
@@ -98,6 +83,22 @@ function revealingDivs(e){
     
     
 }
+let clickedBomb = document.querySelectorAll(".bomb")
+let shouldTriggerClick = true;
+clickedBomb.forEach(bomb => {
+    bomb.addEventListener("click",() => {
+        if(shouldTriggerClick){
+            clickedBomb.forEach(bomb => {
+                bomb.innerText = "💣" 
+                bomb.click()
+            })
+        }
+        shouldTriggerClick = false;
+    gameOver()
+
+    })
+
+})
 
 let allClicked = document.querySelectorAll('.checked')
 let count = 0
@@ -106,7 +107,7 @@ allClicked.forEach(div => {
         count++;
     }
 })
-if(count === 89){
+if(count === 90){
     won()
 }
 
