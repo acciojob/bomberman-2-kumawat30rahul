@@ -4,7 +4,7 @@ let board = document.querySelector('.grid-container')
 for(let i = 0;i<100;i++){
     let boardCell = document.createElement('div')
     boardCell.id = i;
-    boardCell.setAttribute('data-attri',"0")
+    boardCell.setAttribute('data-attri',"")
     boardCell.classList.add('grid-item','valid')
     // boardCell.innerText = i
     board.appendChild(boardCell)
@@ -55,7 +55,6 @@ function revealingDivs(e){
         if(id > 10 && (id/10) !== 0 && id <89 && ((id-9)/10) !== 0){
             for(let bomb in bombArr){
                 let bombsNumber = eval(id + String(bombArr[bomb])) 
-                console.log("bombNumber>>>>>",bombsNumber,typeof bombsNumber);
                 let bombsNumberDiv = document.getElementById(bombsNumber)
                 if(bombsNumberDiv.classList.contains('bomb')){
                     bombCount++;  
@@ -95,25 +94,50 @@ function addingFlag(e){
     }
     
     if(flagCount === 10){
+        console.log("won");
         if(clickedCell.classList.contains('bomb')){
-            result.innerText = "YOU WIN!"
+            won()
         }
     }
 }
 
 
     let clickedBomb = document.querySelectorAll(".bomb")
-    
-    console.log(clickedBomb);
+    let shouldTriggerClick = true;
     clickedBomb.forEach(bomb => {
         bomb.addEventListener("click",() => {
-            clickedBomb.forEach(bomb => {
-                bomb.innerText = "💣" 
-                result.innerText = "YOU LOSE!"
-            })
+            if(shouldTriggerClick){
+                clickedBomb.forEach(bomb => {
+                    bomb.innerText = "💣" 
+                    bomb.click()
+                })
+            }
+            shouldTriggerClick = false;
+        gameOver()
+
         })
+
     })
 
+function gameOver(){
+    result.innerHTML = "YOU LOSE!"
+    boardDivs.forEach(boardCell => {
+        boardCell.removeEventListener("click",revealingDivs)
+    })
+    boardDivs.forEach(boardCell => {
+        boardCell.removeEventListener("contextmenu",addingFlag)
+    })
+}
+function won(){
+    result.innerText = "YOU WIN!"
+
+    boardDivs.forEach(boardCell => {
+        boardCell.removeEventListener("click",revealingDivs)
+    })
+    boardDivs.forEach(boardCell => {
+        boardCell.removeEventListener("contextmenu",addingFlag)
+    })
+}
 
 
 
@@ -129,22 +153,3 @@ function addingFlag(e){
 
 
 
-
-//==================================inbuilt code==============================//
-// function reset() {
-//     for (i = 1; i <= 9; i++) {
-//         const block = document.getElementById(`${i}`);
-//         block.style.backgroundColor = "transparent";
-//     }
-// }
-  
-// document.getElementById('reset_button').addEventListener('click', reset);
-
-// document.getElementById('change_button').addEventListener('click', () => {
-//     reset();
-//     const blockId = document.getElementById("block_id").value;
-//     const color = document.getElementById("colour_id").value;
-//     // alert(colorId)
-//     const block = document.getElementById(`${blockId}`);
-//     block.style.backgroundColor = color;
-// });
