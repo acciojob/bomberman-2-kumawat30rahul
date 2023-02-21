@@ -30,7 +30,7 @@ for (let i = 0; i < 100; i++) {
 
 let bombIds = [];
 while (bombIds.length < 10) {
-    let randomId = Math.floor(Math.random() * 80) + 10;
+    let randomId = Math.floor(Math.random() * 60) + 20;
     if (!bombIds.includes(randomId)) {
         bombIds.push(randomId);
     }
@@ -70,7 +70,166 @@ let bombArrDATALEFT = {
     downRight: "+" + 11
 };
 
+console.log(bombIds);
+for (let i = 0; i < bombIds.length; i++) {
+    console.log("index---->", i);
+    console.log("bombid>>>", bombIds[i]);
+    if (bombIds[i] % 10 === 0) {
+        console.log("hiii");
+        for (let bomb in bombArrDATALEFT) {
+            let bombsNumber = eval(bombIds[i] + String(bombArrDATALEFT[bomb]))
+            if (bombsNumber % 10 !== 0 && (bombsNumber - 9) % 10 !== 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+        let newbombcount = 0;
+                for (let newbomb in bombArrDATA) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATA[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
 
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            } else if (bombsNumber % 10 === 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+                let newbombcount = 0;
+                for (let newbomb in bombArrDATALEFT) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATALEFT[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            }
+        }
+    } else if ((bombIds[i] - 9) % 10 === 0) {
+        console.log("hiii-2");
+        for (let bomb in bombArrDATARIGHT) {
+            let bombsNumber = eval(bombIds[i] + String(bombArrDATARIGHT[bomb]))
+            if (bombsNumber % 10 !== 0 && (bombsNumber - 9) % 10 !== 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+        let newbombcount = 0;
+                for (let newbomb in bombArrDATA) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATA[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            } else if ((bombsNumber - 9) % 10 === 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+                let newbombcount = 0;
+                for (let newbomb in bombArrDATARIGHT) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATARIGHT[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            }
+
+        }
+    } else {
+        console.log("hiii-3");
+        console.log("bombIds[i]", bombIds[i]);
+        for (let bomb in bombArrDATA) {
+            let bombsNumber = eval(bombIds[i] + String(bombArrDATA[bomb]))
+            if (bombsNumber % 10 !== 0 && (bombsNumber - 9) % 10 !== 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+        let newbombcount = 0;
+                for (let newbomb in bombArrDATA) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATA[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            } else if (bombsNumber % 10 === 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+                let newbombcount = 0;
+                for (let newbomb in bombArrDATALEFT) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATALEFT[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            } else if ((bombsNumber - 9) % 10 === 0) {
+                let bombsNumberDiv = document.getElementById(bombsNumber)
+                let newbombcount = 0;
+                for (let newbomb in bombArrDATARIGHT) {
+                    console.log("bombsNumber", bombsNumber);
+                    let newBombnumbers = eval(bombsNumber + String(bombArrDATARIGHT[newbomb]))
+                    console.log("newBombnumbersDiv>>>>", newBombnumbers);
+                    let divOfnewNumber = document.getElementById(newBombnumbers);
+                    console.log(divOfnewNumber);
+                    console.log("newbombcount-before if>>>>", newbombcount);
+                    if (divOfnewNumber.classList.contains('bomb')) {
+                        newbombcount++;
+                        console.log("newbombcount-inside if>>>>", newbombcount);
+                    }
+                    console.log("newbombcount-after if>>>>", newbombcount);
+
+                }
+                bombsNumberDiv.setAttribute('data',newbombcount)
+                console.log(bombsNumberDiv);
+            }
+
+        }
+    }
+}
 
 //============revelaing boxes===============//
 
