@@ -70,74 +70,7 @@ let bombArrDATALEFT = {
     downRight: "+" + 11
 };
 
-console.log("bombs id>>>>>", bombIds);
-for (let i = 0; i < bombIds.length; i++) {
-    console.log(i);
-    if (bombIds[i] % 10 === 0) {
-        let x = 0
-        let newbombcount = 0
-        let bombDiv = document.getElementById(bombIds[x]);
-        if (bombDiv.classList.contains('bomb')) {
-            newbombcount++;
-        }
-        let bombsNumberDiv;
-        for (let bomb in bombArrDATALEFT) {
-            console.log("bombArrDATALEFT[bomb]>>>>>>>", bombArrDATALEFT[bomb]);
-            let bombsNumber = eval(bombIds[x] + String(bombArrDATALEFT[bomb]))
-            console.log("bombsNumber>>>>>>>", bombsNumber);
-            console.log("newbombcount>>>>>>>", newbombcount);
-            bombsNumberDiv = document.getElementById(bombsNumber)
-            if(bombsNumberDiv.classList.contains('bomb')){
-                newbombcount++
-            }
-            bombsNumberDiv.setAttribute("data", newbombcount);
-        }
-        console.log(bombsNumberDiv);
-    } else if ((bombIds[i] - 9) % 10 === 0) {
-        let x = 0
-        let newbombcount = 0
-        let bombDiv = document.getElementById(bombIds[x]);
-        if (bombDiv.classList.contains('bomb')) {
-            newbombcount++;
-        }
-        let bombsNumberDiv;
-        for (let bomb in bombArrDATARIGHT) {
-            console.log("bombArrDATARIGHT[bomb]>>>>>>>", bombArrDATARIGHT[bomb]);
-            let bombsNumber = eval(bombIds[x] + String(bombArrDATARIGHT[bomb]))
-            console.log("bombsNumber>>>>>>>", bombsNumber);
-            console.log("newbombcount>>>>>>>", newbombcount);
-            bombsNumberDiv = document.getElementById(bombsNumber)
-            if(bombsNumberDiv.classList.contains('bomb')){
-                newbombcount++
-            }
-            bombsNumberDiv.setAttribute("data", newbombcount);
 
-        }
-        console.log(bombsNumberDiv);
-    } else {
-        let x = 0
-        let newbombcount = 0
-        let bombDiv = document.getElementById(bombIds[x]);
-        if (bombDiv.classList.contains('bomb')) {
-            newbombcount++;
-        }
-        let bombsNumberDiv;
-
-        for (let bomb in bombArrDATA) {
-            console.log("bombArrDATA[bomb]>>>>>>>", bombArrDATA[bomb]);
-            let bombsNumber = eval(bombIds[x] + String(bombArrDATA[bomb]))
-            console.log("bombsNumber>>>>>>>", bombsNumber);
-            console.log("newbombcount>>>>>>>", newbombcount);
-            bombsNumberDiv = document.getElementById(bombsNumber)
-            if(bombsNumberDiv.classList.contains('bomb')){
-                newbombcount++
-            }
-            bombsNumberDiv.setAttribute("data", newbombcount);
-        }
-        console.log(bombsNumberDiv);
-
-    }
-}
 
 //============revelaing boxes===============//
 
