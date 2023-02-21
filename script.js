@@ -7,7 +7,7 @@ for (let i = 0; i < 100; i++) {
     boardCell.classList.add('grid-item', 'valid')
     boardCell.setAttribute('data', "0")
 
-    // boardCell.innerText = i
+    boardCell.innerText = i
     board.appendChild(boardCell)
 }
 
@@ -43,6 +43,89 @@ for (let i = 0; i < bombIds.length; i++) {
     bombDiv.style.backgroundColor = 'red';
 }
 
+let bombArrDATA = {
+    left: -1,
+    right: "+" + 1,
+    up: -10,
+    down: "+" + 10,
+    upLeft: -11,
+    upRight: -9,
+    downLeft: "+" + 9,
+    downRight: "+" + 11
+};
+
+let bombArrDATARIGHT = {
+    left: -1,
+    up: -10,
+    down: "+" + 10,
+    upLeft: -11,
+    downLeft: "+" + 9,
+};
+
+let bombArrDATALEFT = {
+    right: "+" + 1,
+    up: -10,
+    down: "+" + 10,
+    upRight: -9,
+    downRight: "+" + 11
+};
+
+console.log("bombs id>>>>>", bombIds);
+for (let i = 0; i < bombIds.length; i++) {
+    if (bombIds[i] % 10 === 0) {
+        let x = 0
+        let newbombcount = 0
+        let bombDiv = document.getElementById(bombIds[x]);
+        if (bombDiv.classList.contains('bomb')) {
+            newbombcount++;
+        }
+        let bombsNumberDiv;
+        for (let bomb in bombArrDATALEFT) {
+            console.log("bombArrDATALEFT[bomb]>>>>>>>", bombArrDATALEFT[bomb]);
+            let bombsNumber = eval(bombIds[x] + String(bombArrDATALEFT[bomb]))
+            console.log("bombsNumber>>>>>>>", bombsNumber);
+            bombsNumberDiv = document.getElementById(bombsNumber)
+            bombsNumberDiv.setAttribute("data", newbombcount);
+        }
+        console.log(bombsNumberDiv);
+    } else if ((bombIds[i] - 9) % 10 === 0) {
+        let x = 0
+        let newbombcount = 0
+        let bombDiv = document.getElementById(bombIds[x]);
+        if (bombDiv.classList.contains('bomb')) {
+            newbombcount++;
+        }
+        let bombsNumberDiv;
+        for (let bomb in bombArrDATARIGHT) {
+            console.log("bombArrDATARIGHT[bomb]>>>>>>>", bombArrDATARIGHT[bomb]);
+            let bombsNumber = eval(bombIds[x] + String(bombArrDATARIGHT[bomb]))
+            console.log("bombsNumber>>>>>>>", bombsNumber);
+            bombsNumberDiv = document.getElementById(bombsNumber)
+            bombsNumberDiv.setAttribute("data", newbombcount);
+
+        }
+        console.log(bombsNumberDiv);
+    } else {
+        let x = 0
+        let newbombcount = 0
+        let bombDiv = document.getElementById(bombIds[x]);
+        if (bombDiv.classList.contains('bomb')) {
+            newbombcount++;
+        }
+        let bombsNumberDiv;
+
+        for (let bomb in bombArrDATA) {
+            console.log("bombArrDATA[bomb]>>>>>>>", bombArrDATA[bomb]);
+            let bombsNumber = eval(bombIds[x] + String(bombArrDATA[bomb]))
+            console.log("bombsNumber>>>>>>>", bombsNumber);
+            bombsNumberDiv = document.getElementById(bombsNumber)
+            bombsNumberDiv.setAttribute("data", newbombcount);
+        }
+        console.log(bombsNumberDiv);
+
+    }
+}
+
 //============revelaing boxes===============//
 
 let boardDivs = document.querySelectorAll('.grid-item')
@@ -63,7 +146,7 @@ function revealingDivs(e) {
         clickedCell.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
         clickedCell.style.opacity = '0.6'
         clickedCell.classList.add('checked')
-        
+
         //====displaying the number of bobms==//
         if (!clickedCell.classList.contains('bomb')) {
             let bombCount = 0;
@@ -299,10 +382,10 @@ function addingFlag(e) {
                 flagged = 1;
             }
         }
-        if(flagged === 0){
+        if (flagged === 0) {
             won()
         }
-        
+
     }
 }
 
