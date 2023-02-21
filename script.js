@@ -72,6 +72,7 @@ let bombArrDATALEFT = {
 
 console.log("bombs id>>>>>", bombIds);
 for (let i = 0; i < bombIds.length; i++) {
+    console.log(i);
     if (bombIds[i] % 10 === 0) {
         let x = 0
         let newbombcount = 0
@@ -84,7 +85,11 @@ for (let i = 0; i < bombIds.length; i++) {
             console.log("bombArrDATALEFT[bomb]>>>>>>>", bombArrDATALEFT[bomb]);
             let bombsNumber = eval(bombIds[x] + String(bombArrDATALEFT[bomb]))
             console.log("bombsNumber>>>>>>>", bombsNumber);
+            console.log("newbombcount>>>>>>>", newbombcount);
             bombsNumberDiv = document.getElementById(bombsNumber)
+            if(bombsNumberDiv.classList.contains('bomb')){
+                newbombcount++
+            }
             bombsNumberDiv.setAttribute("data", newbombcount);
         }
         console.log(bombsNumberDiv);
@@ -100,7 +105,11 @@ for (let i = 0; i < bombIds.length; i++) {
             console.log("bombArrDATARIGHT[bomb]>>>>>>>", bombArrDATARIGHT[bomb]);
             let bombsNumber = eval(bombIds[x] + String(bombArrDATARIGHT[bomb]))
             console.log("bombsNumber>>>>>>>", bombsNumber);
+            console.log("newbombcount>>>>>>>", newbombcount);
             bombsNumberDiv = document.getElementById(bombsNumber)
+            if(bombsNumberDiv.classList.contains('bomb')){
+                newbombcount++
+            }
             bombsNumberDiv.setAttribute("data", newbombcount);
 
         }
@@ -118,7 +127,11 @@ for (let i = 0; i < bombIds.length; i++) {
             console.log("bombArrDATA[bomb]>>>>>>>", bombArrDATA[bomb]);
             let bombsNumber = eval(bombIds[x] + String(bombArrDATA[bomb]))
             console.log("bombsNumber>>>>>>>", bombsNumber);
+            console.log("newbombcount>>>>>>>", newbombcount);
             bombsNumberDiv = document.getElementById(bombsNumber)
+            if(bombsNumberDiv.classList.contains('bomb')){
+                newbombcount++
+            }
             bombsNumberDiv.setAttribute("data", newbombcount);
         }
         console.log(bombsNumberDiv);
