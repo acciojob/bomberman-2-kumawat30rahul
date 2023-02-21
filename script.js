@@ -5,6 +5,8 @@ for (let i = 0; i < 100; i++) {
     let boardCell = document.createElement('div')
     boardCell.id = i;
     boardCell.classList.add('grid-item', 'valid')
+    boardCell.setAttribute('data', "0")
+
     // boardCell.innerText = i
     board.appendChild(boardCell)
 }
